@@ -4,6 +4,7 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
 import tacos.TacoOrder;
+import tacos.kitchen.messaging.OrderReceiver;
 
 @Component
 public class JmsOrderReceiver implements OrderReceiver {
