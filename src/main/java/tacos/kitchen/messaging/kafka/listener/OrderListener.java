@@ -1,21 +1,21 @@
-package tacos.kitchen.messaging.rabbit.listener;
+package tacos.kitchen.messaging.kafka.listener;
 
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 import tacos.TacoOrder;
 import tacos.kitchen.KitchenUI;
 
+@Component
 public class OrderListener {
-
   private KitchenUI ui;
-  
+
   public OrderListener(KitchenUI ui) {
     this.ui = ui;
   }
 
-  @RabbitListener(queues = "tacocloud.order.queue")
-  public void receiveOrder(TacoOrder order) {
+  @KafkaListener(topics = "tacocloud.orders.topic")
+  public void handle(TacoOrder order) {
     ui.displayOrder(order);
   }
 }
